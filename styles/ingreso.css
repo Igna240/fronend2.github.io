@@ -10,6 +10,12 @@ h1 {
   margin: .5em 0;
 }
 
+.error ul li {
+  color: rgb(228, 124, 124);
+  font-weight: 300;
+  margin: .5em 0;
+}
+
 form {
   position: relative;
   max-width: 26em;
@@ -46,6 +52,7 @@ input:focus {
   outline: none;
   border: 1px solid lightgrey;
 }
+
 
 label {
   width: 100%;
