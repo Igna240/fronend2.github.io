@@ -10,10 +10,11 @@ h1 {
   margin: .5em 0;
 }
 
-.error ul li {
+.error ul li, small#errorEmail, small#errorPassword, small#errorNombre, small#errorApellido, small#errorRepPassword {
   color: rgb(228, 124, 124);
   font-weight: 300;
   margin: .5em 0;
+  font-size: 1rem;
 }
 
 form {

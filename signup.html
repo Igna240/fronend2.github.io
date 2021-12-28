@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="styles/ingreso.css">
 
   <!-- ---------------------- logica aplicada en register -------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
+  <!-- <script src="./scripts/utils.js"></script> -->
+  <script src="./scripts/signup.js"></script>
 
 </head>
 
@@ -22,33 +22,38 @@
     <img src="./assets/persona-signup.png" alt="">
   </div>
   <div class="right">
-    <form>
+    <form class="registrar">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
 
       <label>
         Nombre:
-        <input type="text">
+        <input id="inputNombre"type="text">
+        <small id="errorNombre"></small>
       </label>
       <label>
         Apellido:
-        <input type="text">
+        <input id="inputApellido"type="text">
+        <small id="errorApellido"></small>
       </label>
       <label>
         Email:
-        <input type="text">
+        <input id="inputEmail"type="text">
+      <small id="errorEmail"></small>
       </label>
       <label>
         Contraseña:
-        <input type="password">
+        <input id="inputPassword"type="password">
+      <small id="errorPassword"></small>
       </label>
       <label>
         Repetir contraseña:
-        <input type="password">
+        <input id="inputRepPassword"type="password">
+      <small id="errorRepPassword"></small>
       </label>
 
-      <button>Crear Cuenta</button>
+      <button class="submit">Crear Cuenta</button>
 
     </form>
     <div class="ingresarA">
