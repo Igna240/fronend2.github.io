@@ -15,6 +15,10 @@ window.addEventListener("load", function () {
   let errorPassword = document.querySelector("small#errorPassword");
   let errorRepPassword = document.querySelector("small#errorRepPassword");
 
+  let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  let passRegex =
+    /(?=^.{8,15}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])$/;
+
   function validarNombre() {
     if (campoNombre.value == "") {
       errores.push({
@@ -39,12 +43,12 @@ window.addEventListener("load", function () {
         input: "email",
         error: "El campo 'Email' debe estar completo",
       });
-    } /* else if (emailRegex.test(campoEmail.value) == false) {
+    } else if (emailRegex.test(campoEmail.value) == false) {
       errores.push({
         input: "email",
         error: "En el campo 'Email' se debe colocar un correo electronico",
       });
-    } */
+    }
   }
 
   function validarPassword() {
@@ -73,85 +77,86 @@ window.addEventListener("load", function () {
       });
     }
   }
-
+  
   function agregarErrores() {
     errores.forEach(function (error) {
       switch (error.input) {
         case "nombre":
           errorNombre.innerText = error.error;
           break;
-          
-          case "apellido":
-            errorApellido.innerText = error.error;
-            break;
+
+        case "apellido":
+          errorApellido.innerText = error.error;
+          break;
 
         case "email":
           errorEmail.innerText = error.error;
           break;
-          
-          case "pass":
-            errorPassword.innerText = error.error;
-            break;
-            
-            case "repPass":
-              errorRepPassword.innerText = error.error;
-              break;
-            }
-          });
-        }
+
+        case "pass":
+          errorPassword.innerText = error.error;
+          break;
+
+        case "repPass":
+          errorRepPassword.innerText = error.error;
+          break;
+      }
+    });
+  }
 
   function agregarUsuario() {
-    
-      let datos = {
-        firstName: campoNombre.value,
-        lastName: campoApellido.value,
-        email: campoEmail.value,
-        password: campoPassword.value,
-      };
-    
-      let settings = {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(datos),
-      };
-    
-      fetch("https://ctd-fe2-todo.herokuapp.com/v1/users", settings)
-        .then(function (response) {
+    let datos = {
+      firstName: campoNombre.value,
+      lastName: campoApellido.value,
+      email: campoEmail.value,
+      password: campoPassword.value,
+    };
+
+    let settings = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(datos),
+    };
+
+    fetch("https://ctd-fe2-todo.herokuapp.com/v1/users", settings)
+      .then(function (response) {
+        if (response.status == 200){
           return response.json();
-        })
-        .then(function (token) {
-          sessionStorage.setItem("token", token.jwt);
-          window.location.href = "/proyectoIntegrador/mis-tareas.html";
-        })
-        .catch(function (e) {
-          console.log(e);
-        });
-    
+        } else if (response.status == 400){
+          errorEmail.innerText = "El usuario ya esta registrado"
+        } else if (response.status == 500){
+          errorEmail.innerText = "Error del servidor"
+        }
+      })
+      .then(function (token) {
+        sessionStorage.setItem("token", token.jwt);
+        /* window.location.href = "/proyectoIntegrador/mis-tareas.html"; */
+        window.location.href = "http://127.0.0.1:5500/mis-tareas.html";
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
   }
-        
-form.addEventListener("submit", function (e) {        
-  
-  e.preventDefault();
-  
-  validarNombre();
-          
-  validarApellido();
-          
-  validarEmail();
-          
-  validarPassword();
-          
-  validarRepPassword();
 
-  if (errores.length !== 0 ) {
-    agregarErrores();
-  }else {
-    agregarUsuario();
-  }
-  
-});
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
+    validarNombre();
 
+    validarApellido();
+
+    validarEmail();
+
+    validarPassword();
+
+    validarRepPassword();
+
+    if (errores.length !== 0) {
+      agregarErrores();
+    } else {
+      agregarUsuario();
+    }
+  });
 });
