@@ -132,8 +132,8 @@ window.addEventListener("load", function () {
       })
       .then(function (token) {
         localStorage.setItem("token", token.jwt);
-        /* window.location.href = "/proyectoIntegrador/mis-tareas.html"; */
-        window.location.href = "http://127.0.0.1:5500/mis-tareas.html";
+        window.location.href = "/proyectoIntegrador/mis-tareas.html";
+        /* window.location.href = "http://127.0.0.1:5500/mis-tareas.html"; */
       })
       .catch(function (e) {
         console.log(e);
