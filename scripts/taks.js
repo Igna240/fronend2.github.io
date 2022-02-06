@@ -17,7 +17,7 @@ if(!token){
     let settings = {
       headers: {
         "Content-type": "application/json",
-        Authorization: sessionStorage.getItem("token"),
+        Authorization: localStorage.getItem("token"),
       },
     };
     fetch("https://ctd-fe2-todo.herokuapp.com/v1/tasks", settings)
