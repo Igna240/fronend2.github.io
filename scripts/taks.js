@@ -17,7 +17,7 @@ if(!token){
     let settings = {
       headers: {
         "Content-type": "application/json",
-        Authorization: localStorage.getItem("token"),
+        Authorization: sessionStorage.getItem("token"),
       },
     };
     fetch("https://ctd-fe2-todo.herokuapp.com/v1/tasks", settings)
@@ -53,7 +53,7 @@ if(!token){
           method: "PUT",
           headers: {
             "content-type": "application/json",
-            Authorization: localStorage.getItem("token"),
+            Authorization: sessionStorage.getItem("token"),
           },
           body: JSON.stringify(dato),
         };
@@ -83,7 +83,7 @@ if(!token){
         settings = {
           method: "DELETE",
           headers: {
-            Authorization: localStorage.getItem("token"),
+            Authorization: sessionStorage.getItem("token"),
           },
         };
 
