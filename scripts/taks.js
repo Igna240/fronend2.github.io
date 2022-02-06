@@ -28,8 +28,8 @@ if(!token){
         console.log(tasks);
         nuevasTareas.innerHTML = "";
         terminadasTareas.innerHTML = "";
-        imprimirTareas(tasks);
         actualizarTarea();
+        imprimirTareas(tasks);
         eliminar();
       })
       .catch(function (e) {
@@ -103,6 +103,8 @@ if(!token){
   }
 
   function imprimirTareas(tasks) {
+    console.log(tasks);    
+    let array = []
     tasks.reverse().forEach((task) => {
       if (task.completed == false) {
         nuevasTareas.innerHTML += `<li class="tarea" data-tarea-id="${task.id}">
@@ -116,8 +118,7 @@ if(!token){
         </div>
         </li>`;
       } else if (task.completed == true) {
-        tareasCompletas = [task]
-        console.log(tareasCompletas);
+        array.push(task)
         terminadasTareas.innerHTML += `<li class="tarea" data-tarea-id="${task.id}">
         <div class="not-done-2"></div>
         <div class="descripcion">
@@ -130,6 +131,44 @@ if(!token){
         </li>`;
       }
     });
+   eliminarTerminadas(array);
+  }
+  function eliminarTerminadas(array) {
+    array.sort((a, b)=>{
+      if (a.createdAt < b.createdAt) {
+        return -1;    
+      } else if (a.createdAt > b.createdAt) {
+        return 1
+      }else{
+        return 0
+      }
+    })
+    let array1 = array.reverse().slice(10,30);
+    console.log(array1);
+    array1.forEach((objeto)=>{
+      console.log(objeto);
+        
+        console.log(objeto.id);
+        settings = {
+          method: "DELETE",
+          headers: {
+            Authorization: sessionStorage.getItem("token"),
+          },
+        };
+
+        fetch(
+          `https://ctd-fe2-todo.herokuapp.com/v1/tasks/${objeto.id}`,
+          settings
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (task) {
+            console.log(task);
+            obtenerTareas();
+          });
+      
+    })
   }
   function cargarTarea() {
     let datos = {
