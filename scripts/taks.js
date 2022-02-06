@@ -53,7 +53,7 @@ if(!token){
           method: "PUT",
           headers: {
             "content-type": "application/json",
-            Authorization: sessionStorage.getItem("token"),
+            Authorization: localStorage.getItem("token"),
           },
           body: JSON.stringify(dato),
         };
@@ -83,7 +83,7 @@ if(!token){
         settings = {
           method: "DELETE",
           headers: {
-            Authorization: sessionStorage.getItem("token"),
+            Authorization: localStorage.getItem("token"),
           },
         };
 
@@ -179,7 +179,7 @@ if(!token){
       method: "POST",
       headers: {
         "content-type": "application/json",
-        Authorization: sessionStorage.getItem("token"),
+        Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify(datos),
     };
