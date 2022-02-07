@@ -73,7 +73,7 @@ window.addEventListener("load", function () {
           sessionStorage.setItem("token", token.jwt);
           /* window.location.href = "http://127.0.0.1:5500/mis-tareas.html"; */
           /* window.location.href = "/proyectoIntegrador/mis-tareas.html"; */
-          window.location.href = "https://igna240.github.io/fronend2.github.io/mis-tareas.html";
+          window.location.href = "https://igna240.github.io/fronend2.github.io/mis-tareass.html";
         })
         .catch(function (e) {
           console.log(e);
