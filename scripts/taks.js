@@ -1,5 +1,7 @@
 window.addEventListener("load", function () {
   obtenerTareas();
+  obtenerUsuario();
+  cerrarSesion();
   //VALIDO QUE ESTE LOGEADO
   /* const token = sessionStorage.getItem("token")
 if(!token){
@@ -10,7 +12,6 @@ if(!token){
 
   let nuevasTareas = document.querySelector("#skeleton");
   let terminadasTareas = document.querySelector(".tareas-terminadas");
-
   let inputTarea = document.querySelector("#nuevaTarea");
 
   function obtenerTareas() {
@@ -43,9 +44,6 @@ if(!token){
         console.log(element.parentElement.parentElement);
         let elemento = element.parentElement;
         console.log(elemento.dataset.tareaId);
-        let datos = {
-          completed: true,
-        };
         let dato = {
           completed: true,
         };
@@ -179,7 +177,7 @@ if(!token){
       method: "POST",
       headers: {
         "content-type": "application/json",
-        Authorization: localStorage.getItem("token"),
+        Authorization: sessionStorage.getItem("token"),
       },
       body: JSON.stringify(datos),
     };
@@ -192,6 +190,33 @@ if(!token){
       .catch(function (e) {
         console.log(e);
       });
+  }
+  function obtenerUsuario() {
+    let settings = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: sessionStorage.getItem("token"),
+      },
+    };
+    fetch("https://ctd-fe2-todo.herokuapp.com/v1/users/getMe", settings)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (tasks) {
+        console.log(tasks);
+        let datosUsuario = document.querySelector(".user-name");
+        datosUsuario.innerHTML = `${tasks.firstName} ${tasks.lastName}`;
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
+  }
+  function cerrarSesion() {
+    let boton = document.querySelector("#closeApp");
+    boton.addEventListener("click",function (e) {
+      e.preventDefault()
+      window.location.href = "http://127.0.0.1:5500/index.html"
+    })
   }
 
   form.addEventListener("submit", function (e) {

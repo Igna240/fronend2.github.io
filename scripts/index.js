@@ -81,7 +81,7 @@ window.addEventListener("load", function () {
   }
 
   form.addEventListener("submit", function (e) {
-
+    errores = [];
     e.preventDefault();
     validarEmail();
     validarPassword();
