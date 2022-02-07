@@ -77,7 +77,7 @@ window.addEventListener("load", function () {
       });
     }
   }
-  
+
   function agregarErrores() {
     errores.forEach(function (error) {
       switch (error.input) {
@@ -122,18 +122,22 @@ window.addEventListener("load", function () {
 
     fetch("https://ctd-fe2-todo.herokuapp.com/v1/users", settings)
       .then(function (response) {
-        if (response.status == 200){
+        if (response.status == 200) {
           return response.json();
-        } else if (response.status == 400){
-          errorEmail.innerText = "El usuario ya esta registrado"
-        } else if (response.status == 500){
-          errorEmail.innerText = "Error del servidor"
+        } else if (response.status == 400) {
+          errorEmail.innerText = "El usuario ya esta registrado";
+        } else if (response.status == 500) {
+          errorEmail.innerText = "Error del servidor";
         }
       })
       .then(function (token) {
         sessionStorage.setItem("token", token.jwt);
-        window.location.href = "/proyectoIntegrador/mis-tareas.html";
-        /* window.location.href = "http://127.0.0.1:5500/mis-tareas.html"; */
+        if (location = "http://127.0.0.1:5500/signup.html") {
+          window.location.href = "http://127.0.0.1:5500/index.html";
+        } else {
+          window.location.href =
+            "https://igna240.github.io/fronend2.github.io/index.html";
+        }
       })
       .catch(function (e) {
         console.log(e);
