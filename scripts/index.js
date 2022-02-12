@@ -40,6 +40,7 @@ window.addEventListener("load", function () {
     });
   }
   function agregarUsuario() {
+    
     {
       let datos = {
         email: campoEmail.value,
@@ -73,11 +74,12 @@ window.addEventListener("load", function () {
           sessionStorage.setItem("token", token.jwt);
           /* window.location.href = "/proyectoIntegrador/mis-tareas.html"; */
           console.log(token);
-          if (location = "http://127.0.0.1:5500/index.html") {    
+          window.location.href = "/mis-tareas.html";
+          /* if (location = "http://127.0.0.1:5500/index.html") {    
             window.location.href = "http://127.0.0.1:5500/mis-tareas.html";
           }else{
             window.location.href = "https://igna240.github.io/fronend2.github.io/mis-tareas.html";
-          }
+          } */
         })
         .catch(function (e) {
           console.log(e);
