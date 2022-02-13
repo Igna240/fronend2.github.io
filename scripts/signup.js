@@ -132,12 +132,7 @@ window.addEventListener("load", function () {
       })
       .then(function (token) {
         sessionStorage.setItem("token", token.jwt);
-        if (location = "http://127.0.0.1:5500/signup.html") {
-          window.location.href = "http://127.0.0.1:5500/index.html";
-        } else {
-          window.location.href =
-            "https://igna240.github.io/fronend2.github.io/index.html";
-        }
+        window.location.href = "./index.html";
       })
       .catch(function (e) {
         console.log(e);
