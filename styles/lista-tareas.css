@@ -99,7 +99,7 @@ a {
   width: 100%;
 }
 
-.not-done {
+.not-done, .not-done-1 {
   width: 2em;
   height: 2em;
   background-color: var(--app-grey);

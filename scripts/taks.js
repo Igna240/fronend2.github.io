@@ -29,19 +29,20 @@ if(!token){
         console.log(tasks);
         nuevasTareas.innerHTML = "";
         terminadasTareas.innerHTML = "";
-        actualizarTarea();
         imprimirTareas(tasks);
         eliminar();
+        actualizarTarea();
       })
       .catch(function (e) {
         console.log(e);
       });
   }
   function actualizarTarea() {
-    let finish = document.querySelectorAll(".not-done");
+    const finish = document.querySelectorAll(".tarea .not-done");
     finish.forEach(function (element) {
-      element.addEventListener("click", function () {
-        console.log(element.parentElement.parentElement);
+      console.log(element);
+      element.addEventListener("click", function (e) {
+        e.preventDefault();
         let elemento = element.parentElement;
         console.log(elemento.dataset.tareaId);
         let dato = {
@@ -204,7 +205,7 @@ if(!token){
       })
       .then(function (tasks) {
         console.log(tasks);
-        let datosUsuario = document.querySelector(".user-name");
+        const datosUsuario = document.querySelector(".user-name");
         datosUsuario.innerHTML = `${tasks.firstName} ${tasks.lastName}`;
       })
       .catch(function (e) {
@@ -215,7 +216,8 @@ if(!token){
     let boton = document.querySelector("#closeApp");
     boton.addEventListener("click",function (e) {
       e.preventDefault()
-      window.location.href = "http://127.0.0.1:5500/index.html"
+      window.location.href = "./index.html"
+      sessionStorage.setItem("token","");
     })
   }
 
