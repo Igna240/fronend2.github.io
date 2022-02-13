@@ -131,7 +131,7 @@ window.addEventListener("load", function () {
         }
       })
       .then(function (token) {
-        sessionStorage.setItem("token", token.jwt);
+        /* sessionStorage.setItem("token", token); */
         window.location.href = "./index.html";
       })
       .catch(function (e) {
